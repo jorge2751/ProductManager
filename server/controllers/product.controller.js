@@ -13,6 +13,18 @@ module.exports.createProduct = (req, res) => {
         price,
         description
     })
-        .then(person=>res.json(person))
+        .then(productProduct=>res.json(productProduct))
         .catch(err=>res.json(err))
+}
+
+module.exports.getAllProducts = (request, response) => {
+    Product.find({})
+        .then(products => response.json(products))
+        .catch(err => response.json(err))
+}
+
+module.exports.getProduct = (request, response) => {
+    Product.findOne({_id:request.params.id})
+        .then(product => response.json(product))
+        .catch(err => response.json(err))
 }
