@@ -27,7 +27,7 @@ const Detail = (props) => {
             <h2>{product.title}</h2>
             <p>Price: {product.price}</p>
             <p>Description: {product.description}</p>
-            <Link to={`/products/${product._id}/edit`}>Edit</Link>
+            <Link to={`/products/${product._id}/edit`} >Edit</Link>
             <button onClick={(e) => { deleteProduct(product._id) }}>Delete</button>
         </div>
     )

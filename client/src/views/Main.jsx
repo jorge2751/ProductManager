@@ -15,18 +15,22 @@ const Main = (props) => {
             })
             .catch(err => console.error(err));
     }, []);
-
-    const receiveProduct = newProduct =>{
-        setProducts([...products, newProduct])
-    }
-
+    
     const removeFromDom = productId => {
         setProducts(products.filter(product => product._id !== productId))
     }
 
+    const createProduct = product => {
+        axios.post('http://localhost:8000/api/products', product)
+            .then(res => {
+                setProducts([...products, res.data])
+            })
+            .catch(err => console.log('Error: ', err))
+    }
+
     return (
         <div>
-            <ProductForm newProduct={receiveProduct}/>
+            <ProductForm  onSubmitProp={createProduct} initialTitle="" initialPrice="" initialDescription="" />
             <hr />
             {loaded && <ProductList products={products} removeFromDom={removeFromDom}/>}
         </div>
